@@ -1,61 +1,50 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
+import PrimaryButton from "./PrimaryButton";
+import EyebrowLabel from "./EyebrowLabel";
+import PageTitle from "./PageTitle";
+import Subtitle from "./Subtitle";
 
 export default function Hero() {
-  const router = useRouter();
-
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center bg-black text-white text-center px-4 relative overflow-hidden">
-      {/* Background glow effects */}
-      <div className="pointer-events-none absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-lime-400/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-lime-400/10 blur-3xl" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-lime-400/5 blur-3xl" />
+    <section className="flex min-h-screen flex-col items-center justify-center bg-[#04060f] text-white text-center px-4 relative overflow-hidden">
 
-      <div className="relative z-10 max-w-3xl flex flex-col items-center gap-8">
+      {/* Single unified glow — left-offset, bleeds into black */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 75% 65% at 20% 35%, rgba(22,65,185,0.9) 0%, rgba(12,35,110,0.4) 45%, transparent 70%)" }} />
 
-        {/* Logo with glow */}
-        <div className="relative">
-          <div className="absolute inset-0 rounded-full bg-lime-400/30 blur-2xl scale-110" />
+      <div className="relative z-10 max-w-3xl flex flex-col items-center">
+
+        {/* Logo */}
+        <div className="relative mb-4">
           <Image
-            src="/updated_logo-removebg.png"
+            src="/images/logo.png"
             alt="Gagamba Drone Logo"
-            width={240}
-            height={240}
-            className="relative z-10 brightness-125 drop-shadow-[0_0_40px_rgba(163,230,53,0.8)]"
+            width={180}
+            height={180}
+            className="brightness-150"
           />
         </div>
 
-        {/* Eyebrow label */}
-        <div className="inline-block border border-lime-400/40 text-lime-400 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full">
-          Next Generation Drone Technology
+        <EyebrowLabel message="Next Generation Drone Technology" />
+
+        <div className="mt-5">
+          <PageTitle prefix="The" highlight="Gagamba" />
         </div>
 
-        {/* Title */}
-        <h1 className="text-6xl md:text-8xl font-black leading-tight tracking-tight">
-          The{" "}
-          <span className="bg-gradient-to-r from-lime-300 to-lime-500 bg-clip-text text-transparent">
-            Gagamba
-          </span>
-        </h1>
+        <div className="mt-4">
+          <Subtitle message="The first drone that can not only clean a wall, but paint it too." />
+        </div>
 
-        {/* Subtitle */}
-        <p className="text-lg md:text-xl text-zinc-400 font-light max-w-xl leading-relaxed">
-          The first drone that can not only clean a wall, but paint it too.
-        </p>
-
-        {/* CTA Button */}
-        <button
-          onClick={() => router.push("/coordinates")}
-          className="mt-2 bg-lime-400 hover:bg-lime-300 text-black font-semibold text-sm sm:text-base h-10 sm:h-12 px-6 rounded-full cursor-pointer transition-all duration-200 shadow-[0_0_20px_rgba(163,230,53,0.4)] hover:shadow-[0_0_30px_rgba(163,230,53,0.7)]"
-        >
-          Got Coordinates?
-        </button>
+        <Link href="/coordinates" className="mt-7">
+          <PrimaryButton message="Get a Quote?" />
+        </Link>
       </div>
 
-      {/* Bottom accent line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-lime-400/30 to-transparent" />
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050810] to-transparent pointer-events-none" />
     </section>
   );
 }
