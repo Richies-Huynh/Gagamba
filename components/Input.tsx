@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function Input({placeholder} : {placeholder: string}) {
+export default function Input(props: React.ComponentProps<"input">) {
   return (
-    <input placeholder={placeholder}/>
+    <input {...props} />
   );
 }

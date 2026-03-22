@@ -1,8 +1,28 @@
-import Hero from "@/components/Hero";
-import Image from "next/image";
+"use client";
+import Input from "@/components/Input";
+import Textarea from "@/components/Textarea"
+import Button from "@/components/Button"
+import React from "react";
+import FormLabel from "@/components/FormLabel";
+import { useForm } from "react-hook-form";
 
-export default function Home() {
+export default function Contact() {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data: any) => {
+    alert("submitted!");
+  };
+
   return (
-    <Hero/>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <FormLabel label={"Name"}/>
+      <Input {...register("name", {required: true})} placeholder={"John Doe"}/>
+      <FormLabel label={"Email"}/>
+      <Input {...register("email", {required: true})} placeholder={"email@example.com"}/>
+      <FormLabel label={"Message"}/>
+      <Textarea {...register("message", {required: true})} placeholder={"Enter message"}/>
+      <br/>
+      <Button label={"Submit"}/>
+    </form>
   );
 }
