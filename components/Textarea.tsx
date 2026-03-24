@@ -1,7 +1,10 @@
 import React from "react";
 
-export default function Input({name, placeholder} : {name: string, placeholder: string}) {
-  return (
-    <textarea name={name} placeholder={placeholder}/>
-  );
-}
+const Textarea = React.forwardRef<HTMLTextAreaElement, React.TextareaHTMLAttributes<HTMLTextAreaElement>>(
+  (props, ref) => {
+    return <textarea ref={ref} {...props} />;
+  }
+);
+
+Textarea.displayName = "Textarea";
+export default Textarea;

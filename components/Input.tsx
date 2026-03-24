@@ -1,7 +1,10 @@
 import React from "react";
 
-export default function Input({placeholder} : {placeholder: string}) {
-  return (
-    <input placeholder={placeholder}/>
-  );
-}
+const Input = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
+  (props, ref) => {
+    return <input ref={ref} {...props} />;
+  }
+);
+
+Input.displayName = "Input";
+export default Input;
